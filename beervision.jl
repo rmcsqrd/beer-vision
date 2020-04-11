@@ -37,7 +37,10 @@ function beervision(video_name)
 
     ### IMAGE PROCESSING STUFF ###
     # create threshold baseline for static parts of images
-    background_threshold(bubble_array)
+    threshold_array = background_threshold(bubble_array)
+    gif_location = string(@__DIR__,"/data/output/",video_name,"threshold",".gif")
+    save(gif_location, threshold_array)
+    
         
 end
 
