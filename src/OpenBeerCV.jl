@@ -1,6 +1,27 @@
 ## IMPORTS
 using ImageView
 
+function side_by_side(composite_array, threshold_array)
+    
+    # total vanity gif generator to create a side by side gif of bubbles and thresholded gif
+    vanity_array = Array{Any}(undef, size(composite_array)[1], size(composite_array)[2], size(composite_array)[3])
+    
+    @showprogress 1 "mirror, mirror..." for k in 1:size(threshold_array)[3]
+        for j in 1:size(threshold_array)[1]
+            for i in 1:size(threshold_array)[2]
+                if i > 0.5*size(threshold_array)[2]
+                    vanity_array[j, i, k] = threshold_array[j, i, k]
+                else
+                    vanity_array[j, i, k] = composite_array[j, i, k]
+                end
+                    
+            end
+        end
+        
+    end
+    return vanity_array
+end
+
 function background_threshold(composite_array)
 
     # this function takes an average of all the frames in a set and returns an average intensity of the images.
@@ -31,6 +52,7 @@ function background_threshold(composite_array)
                 val_difference = intensity_mat[j, i, k] - threshold_baseline[j, i]
                 val_avg = sum(intensity_mat[j, i, k]+threshold_baseline[j, i])/2
                 
+
                 if abs(val_difference/val_avg) < thresh_val
                     threshold_array[j, i, k] = 0.0
                 else
@@ -41,5 +63,6 @@ function background_threshold(composite_array)
         
     end
     return threshold_array  
-   
 end
+
+

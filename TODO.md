@@ -1,5 +1,4 @@
 #TODO:  
 accept function inputs from julia REPL or command line
-resize the images and actually do some image processing.
-figure out some sort of workflow to make a gif of your progress images
+figure out why side by side vanity gif (half beer, half threshold) isn't working. Julia pass by sharing convention?
 

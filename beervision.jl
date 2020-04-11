@@ -41,6 +41,12 @@ function beervision(video_name)
     gif_location = string(@__DIR__,"/data/output/",video_name,"threshold",".gif")
     save(gif_location, threshold_array)
     
+    # create vanity gif because it looks cool
+    println("fuckkkkk")
+    vanity_gif = side_by_side(bubble_array, threshold_array)
+    gif_location = string(@__DIR__,"/data/output/",video_name,"vanity",".gif")
+    save(gif_location, threshold_array)
+    
         
 end
 
