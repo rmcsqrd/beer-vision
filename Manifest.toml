@@ -691,9 +691,9 @@ version = "1.1.2"
 
 [[MosaicViews]]
 deps = ["OffsetArrays", "PaddedViews"]
-git-tree-sha1 = "0df0bf7a003baf49f43d1c538bc5a0b418dc744b"
+git-tree-sha1 = "b483b88403ac0ac01667778cbb29462b111b1deb"
 uuid = "e94cdb99-869f-56ef-bcf0-1ae2bcbe0389"
-version = "0.2.0"
+version = "0.2.2"
 
 [[NLSolversBase]]
 deps = ["DiffResults", "Distributed", "FiniteDiff", "ForwardDiff"]
