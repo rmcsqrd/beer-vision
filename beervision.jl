@@ -21,7 +21,7 @@ function beervision(video_name)
     catch
     end
     mkdir(string(@__DIR__,"/data/frames/", foldername))  
-    N = 100# 100 will give you issues with file naming (eg _09, _10, _100, _11)
+    N = 100  # 100 will give you issues with file naming (eg _09, _10, _100, _11)
     extract_frames(N, video_prefix, video_path)
    
     # generate video file parameters and extract actual video fps rate
@@ -37,15 +37,16 @@ function beervision(video_name)
 
     ### IMAGE PROCESSING STUFF ###
     # create threshold baseline for static parts of images
-    threshold_array = background_threshold(bubble_array)
+    threshold_value = 0.2
+    threshold_array, gray_array = background_threshold(bubble_array, threshold_value)
     gif_location = string(@__DIR__,"/data/output/",video_name,"threshold",".gif")
     save(gif_location, threshold_array)
-    
+   
+     
     # create vanity gif because it looks cool
-    println("fuckkkkk")
-    vanity_gif = side_by_side(bubble_array, threshold_array)
+    vanity_gif = side_by_side(gray_array, threshold_array)
     gif_location = string(@__DIR__,"/data/output/",video_name,"vanity",".gif")
-    save(gif_location, threshold_array)
+    save(gif_location, vanity_gif)
     
         
 end
