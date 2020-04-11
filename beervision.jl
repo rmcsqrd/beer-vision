@@ -5,8 +5,10 @@ using VideoIO, Makie, ImageTransformations
 include(string(@__DIR__, "/src/DetermineFPS.jl"))
 include(string(@__DIR__, "/src/ImageProcessingWrappers.jl"))
 include(string(@__DIR__, "/src/MakeGIF.jl"))
+include(string(@__DIR__, "/src/OpenBeerCV.jl"))
 
 function beervision(video_name)
+    ### VIDEO PRE PROCESSING STUFF ###
     # choose video frame parameters and extract frames
     video_path = string(@__DIR__,"/data/videos/", video_name)
     foldername = video_name[1:length(video_name)-4]
@@ -30,8 +32,12 @@ function beervision(video_name)
     resize_images(0.3, video_output_folder)
 
     # make a gif of stuff 
-    gif_location = "/Users/riomcmahon/Desktop/test.gif" 
-    makeGIF(video_output_folder, gif_location)
+    gif_location = string(@__DIR__,"/data/output/",video_name,".gif")
+    bubble_array= makeGIF(video_output_folder, gif_location)
+
+    ### IMAGE PROCESSING STUFF ###
+    # create threshold baseline for static parts of images
+    background_threshold(bubble_array)
         
 end
 

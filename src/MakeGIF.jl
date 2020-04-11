@@ -22,5 +22,6 @@ function makeGIF(image_folder, save_location)
        end 
     end 
     save(save_location, GIFimg)
+    return GIFimg
 
 end
