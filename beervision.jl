@@ -6,6 +6,7 @@ include(string(@__DIR__, "/src/DetermineFPS.jl"))
 include(string(@__DIR__, "/src/ImageProcessingWrappers.jl"))
 include(string(@__DIR__, "/src/MakeGIF.jl"))
 include(string(@__DIR__, "/src/OpenBeerCV.jl"))
+include(string(@__DIR__, "/src/BlobCentroidDetect.jl"))
 
 function beervision(video_name)
     ### VIDEO PRE PROCESSING STUFF ###
@@ -21,7 +22,7 @@ function beervision(video_name)
     catch
     end
     mkdir(string(@__DIR__,"/data/frames/", foldername))  
-    N = 100  # 100 will give you issues with file naming (eg _09, _10, _100, _11)
+    N = 50  # 100 will give you issues with file naming (eg _09, _10, _100, _11)
     extract_frames(N, video_prefix, video_path)
    
     # generate video file parameters and extract actual video fps rate
@@ -37,7 +38,7 @@ function beervision(video_name)
 
     ### IMAGE PROCESSING STUFF ###
     # create threshold baseline for static parts of images
-    threshold_value = 0.2
+    threshold_value = 0.25
     threshold_array, gray_array = background_threshold(bubble_array, threshold_value)
     gif_location = string(@__DIR__,"/data/output/",video_name,"threshold",".gif")
     save(gif_location, threshold_array)
@@ -47,6 +48,12 @@ function beervision(video_name)
     vanity_gif = side_by_side(gray_array, threshold_array)
     gif_location = string(@__DIR__,"/data/output/",video_name,"vanity",".gif")
     save(gif_location, vanity_gif)
+
+    # compute centroids and generate gif
+    centroid_array = BlobCentroidDetect(threshold_array)  # note that if you try to generate a gif with this data and >20ish frames stuff breaks for some reason. Overaly works tho
+    centroid_overlay = ColorCentroidOverlay(bubble_array, centroid_array)
+    gif_location = string(@__DIR__,"/data/output/",video_name,"centroids",".gif")
+    save(gif_location, centroid_overlay)
     
         
 end

@@ -21,7 +21,8 @@ function background_threshold(composite_array, thresh_val)
             threshold_baseline[j,i] = sum(intensity_mat[j,i,:])/size(intensity_mat)[3] 
         end
     end
-
+    #imshow(threshold_baseline)  # uncomment to display the baseline threshold image
+    
     # loop through array and create generate thresholded images
     threshold_array = Array{Any}(undef, size(intensity_mat)[1], size(intensity_mat)[2], size(intensity_mat)[3])
     @showprogress 1 "Creating Threshold Array..." for k in 1:size(threshold_array)[3]
@@ -64,4 +65,22 @@ function side_by_side(composite_array, threshold_array)
         
     end
     return vanity_array
+end
+
+function ColorCentroidOverlay(color_array, centroid_array)
+    # this function plots the centroids of the bubbles onto the color video
+    overlay = Array{RGB{N0f8}}(undef, size(color_array)[1], size(color_array)[2], size(color_array)[3])
+    
+    for k in 1:size(centroid_array)[3]
+        for j in 1:size(centroid_array)[1]
+            for i in 1:size(centroid_array)[2]
+                if centroid_array[j, i, k] != Gray{N0f8}(0.0)
+                    overlay[j, i, k] = RGB(1, 0, 1)
+                else
+                    overlay[j, i, k] = color_array[j, i, k]
+                end
+            end
+        end
+    end
+    return overlay
 end
