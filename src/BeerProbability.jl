@@ -8,8 +8,8 @@ function DistributionEstimate(color_array, centroid_array, y, h, n_bins, fps)
 
     # generate bin counting array n_bin x k square matrix, initialize with zeros. This will count the times of arrival.
     # also generate a bin timing array (n_bin x 1) which counts the times between hits for each bin
-    bin_hits = zeros(n_bins+3, size(centroid_array)[3])  # the +2 are just a really lazy fix to a bounds errors I was getting
-    bin_counts = zeros(n_bins+3) 
+    bin_hits = zeros(n_bins, size(centroid_array)[3])  
+    bin_counts = zeros(n_bins) 
     
     # color info
     magenta = RGB(1, 0, 1)
