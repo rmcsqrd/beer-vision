@@ -9,7 +9,25 @@ include(string(@__DIR__, "/src/OpenBeerCV.jl"))
 include(string(@__DIR__, "/src/BlobCentroidDetect.jl"))
 include(string(@__DIR__, "/src/BeerProbability.jl"))
 
-function beervision(video_name)
+"""
+        beervision(video_name, N) is a wrapper function that takes a video input 
+                                  and estimates the probability distribution of bubbles in the video.  
+
+        INPUT: 
+
+        video_name = .mp4 video file located in the data/videos folder 
+                     (only tested on beer bubbles. Example videos can be found in data/videos)  
+
+        N = number of frames to extract from the video file and run statistics on.   
+            I've generally tested values between 10-100 frames.  
+
+        OUTPUT: Nothing is returned explicitly but some output gifs are generated in data/output. 
+                A plot of the distribution is created in data/output/plots. 
+                Extracted frames are places in data/frames
+
+        EXAMPLE: beervision("bubbles1.mp4", 100)
+"""
+function beervision(video_name, N)
     ### VIDEO PRE PROCESSING STUFF ###
     # choose video frame parameters and extract frames
     video_path = string(@__DIR__,"/data/videos/", video_name)
@@ -23,7 +41,7 @@ function beervision(video_name)
     catch
     end
     mkdir(string(@__DIR__,"/data/frames/", foldername))  
-    N = 100  # 100 will give you issues with file naming (eg _09, _10, _100, _11)
+    # N = 100  # uncomment to override input.  >99 will give you issues with file naming (eg _09, _10, _100, _11)
     extract_frames(N, video_prefix, video_path)
    
     # generate video file parameters and extract actual video fps rate
@@ -51,10 +69,10 @@ function beervision(video_name)
     save(gif_location, vanity_gif)
 
     # compute centroids and generate gif
-    centroid_array = BlobCentroidDetect(threshold_array)  # note that if you try to generate a gif with this data and >20ish frames stuff breaks for some reason. Overaly works tho
-    #centroid_overlay = ColorCentroidOverlay(bubble_array, centroid_array)
-    #gif_location = string(@__DIR__,"/data/output/",video_name,"centroids",".gif")
-    #save(gif_location, centroid_overlay)
+    centroid_array = BlobCentroidDetect(threshold_array)  # note that if you try to generate a gif with this data and >20ish frames stuff breaks for some reason. Overaly works though
+    centroid_overlay = ColorCentroidOverlay(bubble_array, centroid_array)
+    gif_location = string(@__DIR__,"/data/output/",video_name,"centroids",".gif")
+    save(gif_location, centroid_overlay)
     
     # do probability calculations using the computed centroids
     count_region_y = 100  # measured from top of image, down (in px)
@@ -67,8 +85,17 @@ function beervision(video_name)
     # plot a histogram
     plotbins = distribution_data[:, 1]  # truncate off zero term
     data = distribution_data[:, 2]
-    # display(data)
-    # display(plotbins)
+    println("Histogram Data")
+    println("Interarrival Times,  # of Hits")
+    print("\n")
+    display(distribution_data)
+    
+    # plot stuff
+    
+    try
+        mkdir(string(@__DIR__,"/data/output/plots/")) # just ignore error if directory already exists
+    catch
+    end
     plot_location = string(@__DIR__,"/data/output/plots/plot.png")
     histplt = Plots.bar(plotbins, data, legend=false)
     Plots.xlabel!("Bubble Interarrival Time (s)")
@@ -81,4 +108,4 @@ end
 
 
 ## "MAIN LOOP"
-beervision("bubbles1.mp4")  # uncomment to run automatically when included from REPL
+# beervision("bubbles1.mp4")  # uncomment to run automatically when included from REPL
