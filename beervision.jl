@@ -1,5 +1,5 @@
 ## IMPORTS
-using VideoIO, Makie, ImageTransformations
+using VideoIO, Makie, ImageTransformations, Plots
 
 # import custom stuff
 include(string(@__DIR__, "/src/DetermineFPS.jl"))
@@ -58,11 +58,16 @@ function beervision(video_name)
     
     # do probability calculations using the computed centroids
     count_region_y = 100  # measured from top of image, down (in px)
-    count_region_h = 1  # height of counting region
+    count_region_h = 10  # height of counting region
     n_bins = 50  # the number of bins to sample from
     output_array, distribution_data = DistributionEstimate(bubble_array, centroid_array, count_region_y, count_region_h, n_bins, imagefps)
     gif_location = string(@__DIR__,"/data/output/",video_name,"distdata",".gif")
     save(gif_location, output_array)
+    
+    # plot a histogram
+    bins = distribution_data[:, 1]
+    data = distribution_data[:, 2]
+    histogram(data, bins)
     
         
 end
