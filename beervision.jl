@@ -7,6 +7,7 @@ include(string(@__DIR__, "/src/ImageProcessingWrappers.jl"))
 include(string(@__DIR__, "/src/MakeGIF.jl"))
 include(string(@__DIR__, "/src/OpenBeerCV.jl"))
 include(string(@__DIR__, "/src/BlobCentroidDetect.jl"))
+include(string(@__DIR__, "/src/BeerProbability.jl"))
 
 function beervision(video_name)
     ### VIDEO PRE PROCESSING STUFF ###
@@ -22,7 +23,7 @@ function beervision(video_name)
     catch
     end
     mkdir(string(@__DIR__,"/data/frames/", foldername))  
-    N = 50  # 100 will give you issues with file naming (eg _09, _10, _100, _11)
+    N = 100  # 100 will give you issues with file naming (eg _09, _10, _100, _11)
     extract_frames(N, video_prefix, video_path)
    
     # generate video file parameters and extract actual video fps rate
@@ -51,9 +52,17 @@ function beervision(video_name)
 
     # compute centroids and generate gif
     centroid_array = BlobCentroidDetect(threshold_array)  # note that if you try to generate a gif with this data and >20ish frames stuff breaks for some reason. Overaly works tho
-    centroid_overlay = ColorCentroidOverlay(bubble_array, centroid_array)
-    gif_location = string(@__DIR__,"/data/output/",video_name,"centroids",".gif")
-    save(gif_location, centroid_overlay)
+    #centroid_overlay = ColorCentroidOverlay(bubble_array, centroid_array)
+    #gif_location = string(@__DIR__,"/data/output/",video_name,"centroids",".gif")
+    #save(gif_location, centroid_overlay)
+    
+    # do probability calculations using the computed centroids
+    count_region_y = 100  # measured from top of image, down (in px)
+    count_region_h = 1  # height of counting region
+    n_bins = 50  # the number of bins to sample from
+    output_array, distribution_data = DistributionEstimate(bubble_array, centroid_array, count_region_y, count_region_h, n_bins, imagefps)
+    gif_location = string(@__DIR__,"/data/output/",video_name,"distdata",".gif")
+    save(gif_location, output_array)
     
         
 end
