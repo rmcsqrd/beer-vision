@@ -12,7 +12,7 @@ An extensive write up of this can be found [here](https://riomcmahon.me/portfoli
 ```
     $ git clone https://github.com/rmcsqrd/beer-vision.git
 ```
- - Navigate to the root directory of the cloned repository. Open the Julia REPL (this assumes you set up your path correctly). Instantiate and activate the environment then include the beervision file. Run the program on a file of your choice for some number of frames. (example videos are included in `/data/videos`). Note that there is some bug if you input around `N=20` frames. `N=1` and `N=100` are working.
+ - Navigate to the root directory of the cloned repository. Open the Julia REPL (this assumes you set up your path correctly). Instantiate and activate the environment then include the beervision file. Run the program on a file of your choice for some number of frames. (example videos are included in `/data/videos`). Note that there is some bug if you input around `N=20` frames. `N=10` and `N=100` are working.
 ```
     $ cd /some/location/on/your/computer
     $ julia
