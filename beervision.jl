@@ -65,9 +65,16 @@ function beervision(video_name)
     save(gif_location, output_array)
     
     # plot a histogram
-    bins = distribution_data[:, 1]
+    plotbins = distribution_data[:, 1]  # truncate off zero term
     data = distribution_data[:, 2]
-    histogram(data, bins)
+    # display(data)
+    # display(plotbins)
+    plot_location = string(@__DIR__,"/data/output/plots/plot.png")
+    histplt = Plots.bar(plotbins, data, legend=false)
+    Plots.xlabel!("Bubble Interarrival Time (s)")
+    Plots.ylabel!("Number of Bubbles")
+    Plots.title!("Bubble Emission Rate Distribution")
+    savefig(histplt, plot_location)
     
         
 end
