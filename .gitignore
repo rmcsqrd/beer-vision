@@ -1,5 +1,3 @@
 .DS_Store
 .beervision.jl.swp
-data/output/*
-data/frames/*
 aux
