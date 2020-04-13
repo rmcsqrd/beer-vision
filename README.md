@@ -3,8 +3,8 @@ Ever been curious where the bubbles in your beer come from? How they just seem t
 
  These are all great questions that I'm not going to answer within this repo. Instead, I'm using computer vision to try to quantify the emission rate of beer bubbles as an exponentially distributed random variable. 
 
-![alt text](https://github.com/rmcsqrd/beer-vision/raw/master/data/output/bubbles1.mp4vanity.gif"Bubbles")
-![alt text](https://github.com/rmcsqrd/beer-vision/raw/master/data/output/plots/plot.png"Bubbles")
+![alt text](https://github.com/rmcsqrd/beer-vision/raw/master/data/output/bubbles1.mp4vanity.gif "Bubbles")
+![alt text](https://github.com/rmcsqrd/beer-vision/raw/master/data/output/plots/plot.png "Bubbles2")
 
 ### Usage
 (Note this project is a work in progress so I haven't fully buttoned up the usage section)
