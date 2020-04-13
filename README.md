@@ -10,7 +10,7 @@ Ever been curious where the bubbles in your beer come from? How they just seem t
 ```
     $ git clone https://github.com/rmcsqrd/beer-vision.git
 ```
--  Navigate to the root directory of the cloned repository. Open the Julia REPL (this assumes you set up your path correctly). Instantiate and activate the environment then include the beervision file. Run the program on a file of your choice (example videos are included in `/data/videos`)
+ - Navigate to the root directory of the cloned repository. Open the Julia REPL (this assumes you set up your path correctly). Instantiate and activate the environment then include the beervision file. Run the program on a file of your choice for some number of frames. (example videos are included in `/data/videos`). Note that there is some bug if you input around `N=20` frames. `N=1` and `N=100` are working.
 ```
     $ cd /some/location/on/your/computer
     $ julia
@@ -50,6 +50,8 @@ Pictures are worth 1000 words so I've illustrated the image processing pipeline 
 
 ![alt text](https://github.com/rmcsqrd/beer-vision/raw/master/aux/output/bubbles1.mp4distdata.gif "Bubbles")
 
+
+The end result definitely looks like an exponentially distributed RV. (Note that the plot below was for `N=100`frames. The gifs above were from `N=10` to reduce file size since my encoding is pretty inefficient).
 
 ![alt text](https://github.com/rmcsqrd/beer-vision/raw/master/aux/output/plots/plot.png "Bubbles")
 
