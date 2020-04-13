@@ -18,7 +18,7 @@ An extensive write up of this can be found [here](https://riomcmahon.me/portfoli
     $ julia
     julia> ]
     (v1.xx) pkg> instantiate
-    (v1.xx) pkg> activate
+    (v1.xx) pkg> activate .
     julia> include("beervision.jl")
     julia> beervision("bubbles1.mp4", 100)
 ```
