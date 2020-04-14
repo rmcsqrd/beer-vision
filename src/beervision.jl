@@ -4,13 +4,13 @@ module beervision
 using VideoIO
 using Makie
 using ImageTransformations
-using Plots
 using Colors
 using Images
 using FileIO
 using FixedPointNumbers
 using ProgressMeter
 using ImageView
+using Plots
 
 export bubbles
 
