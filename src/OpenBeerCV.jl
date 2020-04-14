@@ -1,3 +1,6 @@
+## IMPORTS
+using ImageView
+
 function background_threshold(composite_array, thresh_val)
 
     # this function takes an average of all the frames in a set and returns an average intensity of the images.
@@ -18,6 +21,7 @@ function background_threshold(composite_array, thresh_val)
             threshold_baseline[j,i] = sum(intensity_mat[j,i,:])/size(intensity_mat)[3] 
         end
     end
+    #imshow(threshold_baseline)  # uncomment to display the baseline threshold image
     
     # loop through array and create generate thresholded images
     threshold_array = Array{Any}(undef, size(intensity_mat)[1], size(intensity_mat)[2], size(intensity_mat)[3])

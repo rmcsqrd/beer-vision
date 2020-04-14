@@ -1,3 +1,5 @@
+using ProgressMeter, ImageTransformations, Images
+
 function resize_images(resize_ratio, image_folder)
 
     for (root, dirs, files) in walkdir(image_folder)
