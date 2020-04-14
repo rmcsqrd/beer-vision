@@ -98,12 +98,6 @@ git-tree-sha1 = "0c91e4fcda51bbd881c5d49ef784460750abcac0"
 uuid = "aafaddc9-749c-510e-ac4f-586e18779b91"
 version = "0.2.1"
 
-[[Clustering]]
-deps = ["Distances", "LinearAlgebra", "NearestNeighbors", "Printf", "SparseArrays", "Statistics", "StatsBase"]
-git-tree-sha1 = "c61e14bc36e38d3845854d8a100f3cf6401f753c"
-uuid = "aaaa29a8-35af-508c-8bc3-b662a17a0fe5"
-version = "0.13.5"
-
 [[ColorBrewer]]
 deps = ["Colors", "JSON", "Test"]
 git-tree-sha1 = "61c5334f33d91e570e1d0c3eb5465835242582c4"
@@ -189,12 +183,6 @@ version = "0.17.12"
 git-tree-sha1 = "bfc1187b79289637fa0ef6d4436ebdfe6905cbd6"
 uuid = "e2d170a0-9d28-54be-80f0-106bbe20a464"
 version = "1.0.0"
-
-[[DataValues]]
-deps = ["DataValueInterfaces", "Dates"]
-git-tree-sha1 = "d88a19299eba280a6d062e135a43f00323ae70bf"
-uuid = "e7dc6d0d-1eca-5fa6-8ad6-5aecde8b7ea5"
-version = "0.4.13"
 
 [[Dates]]
 deps = ["Printf"]
@@ -718,12 +706,6 @@ git-tree-sha1 = "b483b88403ac0ac01667778cbb29462b111b1deb"
 uuid = "e94cdb99-869f-56ef-bcf0-1ae2bcbe0389"
 version = "0.2.2"
 
-[[MultivariateStats]]
-deps = ["Arpack", "LinearAlgebra", "SparseArrays", "Statistics", "StatsBase"]
-git-tree-sha1 = "352fae519b447bf52e6de627b89f448bcd469e4e"
-uuid = "6f286f6a-111f-5878-ab1e-185364afe411"
-version = "0.7.0"
-
 [[NLSolversBase]]
 deps = ["DiffResults", "Distributed", "FiniteDiff", "ForwardDiff"]
 git-tree-sha1 = "7c4e66c47848562003250f28b579c584e55becc0"
@@ -734,12 +716,6 @@ version = "7.6.1"
 git-tree-sha1 = "928b8ca9b2791081dc71a51c55347c27c618760f"
 uuid = "77ba4419-2d1f-58cd-9bb1-8ffee604a2e3"
 version = "0.3.3"
-
-[[NearestNeighbors]]
-deps = ["Distances", "StaticArrays"]
-git-tree-sha1 = "8bc6180f328f3c0ea2663935db880d34c57d6eae"
-uuid = "b8a86587-4115-5ab1-83bc-aa920d37bbce"
-version = "0.4.4"
 
 [[Observables]]
 git-tree-sha1 = "11832878355305984235a2e90d0e3737383c634c"
@@ -1030,12 +1006,6 @@ git-tree-sha1 = "5a140e0bf5d92b2c5c0daa0dcefdadbb57c8a7fb"
 uuid = "3eaba693-59b7-5ba5-a881-562e759f1c8d"
 version = "0.6.11"
 
-[[StatsPlots]]
-deps = ["Clustering", "DataStructures", "DataValues", "Distributions", "Interpolations", "KernelDensity", "MultivariateStats", "Observables", "Plots", "RecipesBase", "Reexport", "StatsBase", "TableOperations", "Tables", "Widgets"]
-git-tree-sha1 = "936e4cb61f85f226dfbc93eacd94a2b7f65da5cd"
-uuid = "f3b207a7-027a-5e70-b257-86293d7955fd"
-version = "0.14.4"
-
 [[StructArrays]]
 deps = ["Adapt", "DataAPI", "Tables"]
 git-tree-sha1 = "10ee2e9b8a222ef7aac886b12cc8c050db9a8a45"
@@ -1045,12 +1015,6 @@ version = "0.4.3"
 [[SuiteSparse]]
 deps = ["Libdl", "LinearAlgebra", "Serialization", "SparseArrays"]
 uuid = "4607b0f0-06f3-5cda-b6b1-a6196a1729e9"
-
-[[TableOperations]]
-deps = ["Tables", "Test"]
-git-tree-sha1 = "208630a14884abd110a8f8008b0882f0d0f5632c"
-uuid = "ab02a1b2-a7df-11e8-156e-fb1833f50b87"
-version = "0.2.1"
 
 [[TableTraits]]
 deps = ["IteratorInterfaceExtensions"]
@@ -1067,12 +1031,6 @@ version = "1.0.3"
 [[Test]]
 deps = ["Distributed", "InteractiveUtils", "Logging", "Random"]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-
-[[TestImages]]
-deps = ["AxisArrays", "FileIO", "Pkg", "ZipFile"]
-git-tree-sha1 = "d2a19ad532b0bd5a9f0f90588a64bd2eb48d12c5"
-uuid = "5e47fb64-e119-507b-a336-dd2b206d9990"
-version = "1.0.2"
 
 [[TiledIteration]]
 deps = ["OffsetArrays"]
@@ -1110,12 +1068,6 @@ deps = ["Libdl", "Pkg", "Wayland_jll"]
 git-tree-sha1 = "d53533e9cbc71f1274b20f4af76c4f13e6e4a8a0"
 uuid = "2381bf8a-dfd0-557d-9999-79630e7b1b91"
 version = "1.18.0+1"
-
-[[Widgets]]
-deps = ["Colors", "Dates", "Observables", "OrderedCollections"]
-git-tree-sha1 = "fc0feda91b3fef7fe6948ee09bb628f882b49ca4"
-uuid = "cc8bc4a8-27d6-5769-a93b-9d913e69aa62"
-version = "0.6.2"
 
 [[WoodburyMatrices]]
 deps = ["LinearAlgebra", "SparseArrays"]
@@ -1326,12 +1278,6 @@ deps = ["Libdl", "Pkg"]
 git-tree-sha1 = "b6e7d70f5fc9e3fde505539194c8caaab3c40ebf"
 uuid = "c5fb5394-a638-5e4d-96e5-b29de1b5cf10"
 version = "1.4.0+1"
-
-[[ZipFile]]
-deps = ["Libdl", "Printf", "Zlib_jll"]
-git-tree-sha1 = "8748302cfdec02c4ae9c97b112cf10003f7f767f"
-uuid = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
-version = "0.9.1"
 
 [[Zlib_jll]]
 deps = ["Libdl", "Pkg"]
