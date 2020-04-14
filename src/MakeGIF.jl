@@ -1,6 +1,3 @@
-## IMPORTS
-using FileIO, ImageMagick, Colors, FixedPointNumbers, ProgressMeter
-
 ## FUNCTIONS
 function makeGIF(image_folder, save_location)
     # this implementation inspired by https://discourse.julialang.org/t/plotting-a-sequence-of-images-as-a-gif/23808/4

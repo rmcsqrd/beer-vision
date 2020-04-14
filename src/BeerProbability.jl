@@ -1,6 +1,4 @@
 ## IMPORTS
-using Colors
-
 function DistributionEstimate(color_array, centroid_array, y, h, n_bins, fps)
     # generate output gif
     bincrement = Int(floor(size(centroid_array)[2]/n_bins))

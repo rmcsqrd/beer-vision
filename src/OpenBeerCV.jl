@@ -1,6 +1,3 @@
-## IMPORTS
-using ImageView
-
 function background_threshold(composite_array, thresh_val)
 
     # this function takes an average of all the frames in a set and returns an average intensity of the images.

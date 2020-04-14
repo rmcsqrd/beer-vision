@@ -1,13 +1,25 @@
+module beervision
+
 ## IMPORTS
-using VideoIO, Makie, ImageTransformations, Plots
+using VideoIO
+using Makie
+using ImageTransformations
+using Plots
+using Colors
+using Images
+using FileIO
+using ImageMagick
+using FixedPointNumbers
+using ProgressMeter
+using ImageView
 
 # import custom stuff
-include(string(@__DIR__, "/src/DetermineFPS.jl"))
-include(string(@__DIR__, "/src/ImageProcessingWrappers.jl"))
-include(string(@__DIR__, "/src/MakeGIF.jl"))
-include(string(@__DIR__, "/src/OpenBeerCV.jl"))
-include(string(@__DIR__, "/src/BlobCentroidDetect.jl"))
-include(string(@__DIR__, "/src/BeerProbability.jl"))
+include(string(@__DIR__, "DetermineFPS.jl"))
+include(string(@__DIR__, "ImageProcessingWrappers.jl"))
+include(string(@__DIR__, "MakeGIF.jl"))
+include(string(@__DIR__, "OpenBeerCV.jl"))
+include(string(@__DIR__, "BlobCentroidDetect.jl"))
+include(string(@__DIR__, "BeerProbability.jl"))
 
 """
         beervision(video_name, N) is a wrapper function that takes a video input 
@@ -106,6 +118,6 @@ function beervision(video_name, N)
         
 end
 
+export beervision
 
-## "MAIN LOOP"
-# beervision("bubbles1.mp4")  # uncomment to run automatically when included from REPL
+end #module
