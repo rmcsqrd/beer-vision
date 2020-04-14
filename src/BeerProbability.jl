@@ -55,8 +55,9 @@ function DistributionEstimate(color_array, centroid_array, y, h, n_bins, fps)
                 ## DO PROBABILITY STUFF
                 if j <= y+h && j >= y
                     if centroid_array[j, i, k] > Gray{N0f8}(0.6)
-                        bin_hits[bincnt, k] = bin_counts[bincnt]*fps^-1
-                        bin_counts[bincnt] = 0
+                        binid = Int(ceil(i/n_bins))  # compute bin location
+                        bin_hits[binid, k] = bin_counts[binid]*fps^-1
+                        bin_counts[binid] = 0
                     end
                 end
 
