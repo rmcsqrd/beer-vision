@@ -1,6 +1,3 @@
-## IMPORTS
-using Colors
-
 function BlobCentroidDetect(video_array)
     # This function takes in an m x n x k array (m x n are frame dimensions, k is number of frames) 
     # it computes the centroid of the blob and returns an m x n x k array of blob centroids
