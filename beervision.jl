@@ -83,29 +83,62 @@ function beervision(video_name, N)
     save(gif_location, output_array)
     
     # plot a histogram
-    plotbins = distribution_data[:, 1]  # truncate off zero term
+    plotbins = distribution_data[:, 1]  # truncate off zero terms
     data = distribution_data[:, 2]
+
+
     println("Histogram Data")
     println("Interarrival Times,  # of Hits")
     print("\n")
     display(distribution_data)
     
-    # plot stuff
+    # compute distribution - uncomment this for method of moments data
+    #mean = sum(distribution_data[:, 1] .* distribution_data[:, 2])/sum(distribution_data[:, 2])
+    #rate = round(mean^-1, digits=3)
     
+    # compute distribution using optimization method
+    rate, lambda_x, lambda_y, p_output, l_output = RateOptimization(distribution_data) 
+
+    # create exponential distribution plot using lambda rate
+    expx = collect(imagefps^-1:imagefps^-1:distribution_data[size(distribution_data)[1], 1])
+    expy = zeros(length(expx))
+    for i in 1:length(expy)
+        expy[i] = rate*exp(-rate*expx[i])
+    end
+    # plot stuff
+
     try
         mkdir(string(@__DIR__,"/data/output/plots/")) # just ignore error if directory already exists
     catch
     end
-    plot_location = string(@__DIR__,"/data/output/plots/plot.png")
-    histplt = Plots.bar(plotbins, data, legend=false)
+    
+    # plot histogram
+    plot_location = string(@__DIR__,"/data/output/plots/plot_hist.png")
+    hist = Plots.bar(plotbins, data, label = "Bin Count") 
+    Plots.plot(hist,  size = (1000, 1000))
+    Plots.plot!(expx, expy, label = "Rate = $rate", lw = 2, linecolor=:orange)
     Plots.xlabel!("Bubble Interarrival Time (s)")
     Plots.ylabel!("Number of Bubbles")
     Plots.title!("Bubble Emission Rate Distribution")
-    savefig(histplt, plot_location)
+    savefig(plot_location)
     
-        
+    # plot probability comparison
+    plot_location = string(@__DIR__,"/data/output/plots/plot_prob.png")
+    Plots.plot(expx, p_output, label="Experimental Probability", size=(1000,1000))
+    Plots.plot!(expx, l_output, label="Exp(rate=lambda_a) Probability")
+    Plots.ylabel!("Probability Xᵢ ∈ b")
+    Plots.xlabel!("b")
+    Plots.title!("Probability Comparison")
+    savefig(plot_location)
+    
+    # plot error
+    plot_location = string(@__DIR__,"/data/output/plots/plot_error.png")
+    Plots.plot(lambda_x, lambda_y, label=false, size=(1000,1000))
+    Plots.ylabel!("√∑(p̂-p)^2")
+    Plots.xlabel!("lambda_a")
+    Plots.title!("Euclidean Norm Error")
+    savefig(plot_location)
 end
-
 
 ## "MAIN LOOP"
 # beervision("bubbles1.mp4")  # uncomment to run automatically when included from REPL
