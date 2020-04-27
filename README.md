@@ -1,5 +1,3 @@
-## Beervision.jl
-
 ![alt text](https://github.com/rmcsqrd/beer-vision/raw/master/aux/beervision_logo.png "Logo")
 
 Ever been curious where the bubbles in your beer come from? How they just seem to appear from nowhere? Why there is just so much dang foam?  
